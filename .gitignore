@@ -1,0 +1,11 @@
+# Empêcher le dossier de l'environnement virtuel d'être suivi
+venv/
+
+# Empêcher les fichiers de cache Python
+__pycache__/
+
+# Empêcher les éventuels fichiers système macOS
+.DS_Store
+
+# Empêcher des fichiers de modèles volumineux
+*.bin
