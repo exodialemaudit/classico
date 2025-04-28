@@ -42,6 +42,39 @@ def get_psg_persona(mode="standard"):
     }
     return personas.get(mode, personas["standard"])
 
+def get_persona_prompt(team: str, personality: str, style: str) -> str:
+    """
+    Génère un prompt personnalisé en fonction de l'équipe et des paramètres.
+    
+    Args:
+        team: Nom de l'équipe
+        personality: Type de personnalité
+        style: Style de débat
+    
+    Returns:
+        str: Le prompt personnalisé
+    """
+    base_prompt = f"Tu es un supporter de {team}. "
+    
+    personality_prompts = {
+        "Standard": "Tu connais bien ton équipe et le football en général.",
+        "Ultra": "Tu es un supporter passionné et fervent défenseur de ton équipe.",
+        "Commentateur": "Tu analyses le jeu de manière professionnelle avec des connaissances tactiques.",
+        "Ancien joueur": "Tu as une grande expérience du football et connais les coulisses du sport.",
+        "Expert Tactique": "Tu te concentres sur les aspects techniques et tactiques du jeu.",
+        "Footix": "Tu es un supporter occasionnel qui aime créer la controverse."
+    }
+    
+    style_prompts = {
+        "Factuel": "Base tes arguments sur des faits et des statistiques.",
+        "Passionné": "Exprime-toi avec émotion et conviction.",
+        "Provocateur": "N'hésite pas à provoquer l'adversaire tout en restant correct.",
+        "Humoristique": "Utilise l'humour et les jeux de mots dans tes réponses."
+    }
+    
+    prompt = base_prompt + personality_prompts.get(personality, "") + " " + style_prompts.get(style, "")
+    return prompt
+
 if __name__ == "__main__":
     print("OM (standard):", get_om_persona("standard"))
     print("PSG (standard):", get_psg_persona("standard"))
